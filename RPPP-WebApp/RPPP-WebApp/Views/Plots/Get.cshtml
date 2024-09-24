@@ -1,0 +1,25 @@
+﻿@* @using RPPP_WebApp.ViewModels;
+@using RPPP_WebApp.Controllers;
+@model PlotViewModel
+
+<tr hx-target="this" hx-swap="outerHTML">
+    <td class="text-left">@Model.PlotName</td>
+    <td class="text-left">@Model.PlotGps</td>
+    <td class="text-left">@Model.Infrastructure</td>
+    <td class="text-left">@Model.Material</td>
+    <td class="text-left">@Model.SunIntensity</td>
+    <td class="text-left">@Model.IdLease</td>
+    <td>
+        <a class="btn btn-sm"
+           hx-get="@Url.Action(nameof(PlotsController.InlineEdit), new { id = Model.IdPlot })" title="Edit"><i class="fas fa-edit"></i></a>
+        title="Edit"><i class="fas fa-edit"></i></a>
+    </td>
+    <td>
+        <button class="btn btn-sm btn-danger"
+                hx-confirm="Delete city?"
+                hx-delete="@Url.Action(nameof(PlotsController.Delete), new { id = Model.IdPlot })"
+                title="Delete">
+            <i class="fas fa-trash-alt"></i>
+        </button>
+    </td>
+</tr> *@

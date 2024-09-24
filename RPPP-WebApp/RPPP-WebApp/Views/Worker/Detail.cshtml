@@ -1,0 +1,42 @@
+﻿@using RPPP_WebApp.Models;
+@model RPPP_WebApp.ViewModels.WorkerViewModel
+@{
+    ViewBag.Title = "`Worker Details";
+}
+
+<h2>Worker Details</h2>
+
+
+
+<table class="table table-sm table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Person ID</th>
+            <th>Harvest ID</th>
+            <th>Time </th>
+            <th>Salary </th>
+            <th>PersonNav</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr >
+          <td class="text-left">@Model.IdPerson</td>
+          <td class="text-left">@Model.IdHarvest</td>
+            <td class="text-left">@Model.Time</td>
+            <td class="text-left">@Model.Salary</td>
+            
+          
+        </tr>
+    </tbody>
+</table> 
+
+@section styles{
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css" />
+}
+@section scripts{
+    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+}
+
+

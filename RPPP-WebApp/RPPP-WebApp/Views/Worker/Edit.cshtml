@@ -1,0 +1,77 @@
+﻿@using RPPP_WebApp.Models;
+@model RPPP_WebApp.ViewModels.WorkerViewModel
+@{
+    ViewBag.Title = "Edit Worker";
+}
+    
+<form asp-route-id="@Model.IdPerson"
+      asp-route-page="@ViewBag.Page"
+      asp-route-sort="@ViewBag.Sort"
+      asp-route-ascending="@ViewBag.Ascending"
+      method="post">
+
+    <div class="mb-3">
+        <label asp-for="IdPerson" class="form-label"></label>
+        <input asp-for="IdPerson" class="form-control" />
+        <div class="form-text"><span asp-validation-for="IdPerson" class="text-danger"></span></div>
+    </div>
+    
+    <div class="mb-3">
+        <label asp-for="FirstName" class="form-label"></label>
+        <input asp-for="FirstName" class="form-control" />
+        <div class="form-text"><span asp-validation-for="FirstName" class="text-danger"></span></div>
+    </div>
+    <div class="mb-3">
+        <label asp-for="LastName" class="form-label"></label>
+        <input asp-for="LastName" class="form-control" />
+        <div class="form-text"><span asp-validation-for="LastName" class="text-danger"></span></div>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Mail" class="form-label"></label>
+        <input asp-for="Mail" class="form-control" />
+        <div class="form-text"><span asp-validation-for="Mail" class="text-danger"></span></div>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Number" class="form-label"></label>
+        <input asp-for="Number" class="form-control" />
+        <div class="form-text"><span asp-validation-for="Number" class="text-danger"></span></div>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Adresse" class="form-label"></label>
+        <input asp-for="Adresse" class="form-control" />
+        <div class="form-text"><span asp-validation-for="Adresse" class="text-danger"></span></div>
+    </div>
+    
+    <div class="mb-3">
+        <label asp-for="IdHarvest" class="form-label"></label>
+        <input asp-for="IdHarvest" class="form-control" />
+        <div class="form-text"><span asp-validation-for="IdHarvest" class="text-danger"></span></div>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Time" class="form-label"></label>
+        <input asp-for="Time" class="form-control" />
+        <div class="form-text"><span asp-validation-for="Time" class="text-danger"></span></div>
+
+    </div>
+    <div class="mb-3">
+        <label asp-for="Salary" class="form-label"></label>
+        <input asp-for="Salary" class="form-control" />
+        <div class="form-text"><span asp-validation-for="Salary" class="text-danger"></span></div>
+
+    </div>
+
+    <div class="text-center">
+        <button class="btn btn-primary" type="submit">Save</button>
+        <a asp-action="Index"
+           asp-route-page="@ViewBag.Page"
+           asp-route-sort="@ViewBag.Sort"
+           asp-route-ascending="@ViewBag.Ascending"
+           class="btn btn-secondary">Cancel</a>
+    </div>
+    <div asp-validation-summary="All"></div>
+</form>
+
+@section scripts {
+    <partial name="IncludeValidation" />
+}

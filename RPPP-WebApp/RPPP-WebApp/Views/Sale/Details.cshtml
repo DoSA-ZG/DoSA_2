@@ -1,0 +1,157 @@
+﻿@using RPPP_WebApp.Models;
+@model RPPP_WebApp.ViewModels.SaleViewModel
+@{
+    ViewBag.Title = "Sale Details";
+}
+<h2>Sale Details</h2>
+
+
+
+<table class="table table-sm table-striped table-hover">
+    <thead>
+        <a asp-action="Edit"
+           asp-route-id="@Model.IdSale"
+           class="btn btn-sm btn-warning" title="Edit">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+            <i class="fas fa-edit"></i>
+            <a class="btn btn-sm btn-primary cancel"
+               asp-action="Index"
+               asp-route-page="@ViewBag.Page"
+               asp-route-sort="@ViewBag.Sort"
+               asp-route-ascending="@ViewBag.Ascending"
+               title="Cancel">
+                <i class="fas fa-undo-alt"></i>
+            </a>
+        </a>
+        <tr>
+            <th>
+                <a>
+                    Sale Id
+                </a>
+            </th>
+            <th>
+                <a>
+                    PlantSeedling
+                </a>
+            </th>
+            <th>
+                <a>
+                    Quantity
+                </a>
+            </th>
+            <th>
+                <a>
+                    Price
+                </a>
+            </th>
+            <th>
+                <a>
+                    Id Harvest
+                </a>
+            </th>
+            <th>
+                <a>
+                    Id Person
+                </a>
+            </th>
+            <th>
+                <a>
+                    IdAnonymous
+                </a>
+            </th>
+            <th></th>
+        </tr>
+
+    </thead>
+    <tbody>
+        <tr>
+            <td class="text-center">@Model.IdSale</td>
+            <td class="text-center">@Model.PlantSeedling</td>
+            <td class="text-center">@Model.QuantitySale </td>
+            <td class="text-center">@Model.PriceSale</td>
+            <td class="text-center">@Model.IdHarvest</td>
+            <td class="text-center">@Model.IdPerson</td>
+            <td class="text-center">@Model.IdAnonymous </td>
+        </tr>
+
+    </tbody>
+</table>
+<hr>
+<h2>Harvests</h2>
+<table class="table table-sm table-striped table-hover">
+
+    <thead>
+        <tr>
+            <th>
+                <a>
+                    Harvest Id
+                </a>
+            </th>
+            <th>
+                <a>
+                    Start Harvest
+                </a>
+            </th>
+            <th>
+                <a>
+                    End Harvest
+                </a>
+            </th>
+            <th>
+                <a>
+                    Use Harvest
+                </a>
+            </th>
+            <th>
+                <a>
+                    Quantity Harvest
+                </a>
+            </th>
+            <th>
+                <a>
+                    Cost Harvest
+                </a>
+            </th>
+            <th>
+                <a>
+                    Id Plant
+                </a>
+            </th>
+            <th>
+                <a>
+                    Id Sale
+                </a>
+            </th>
+            <th>
+                <a>
+                    Name Harvest
+                </a>
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            @foreach (var harvest in Model.Harvests)
+            {
+            <tr>
+                <td class="text-center">@harvest.IdHarvest</td>
+                <td class="text-center">@harvest.StartHarvest.ToString("dd.MM.yyyy")</td>
+                <td class="text-center">@harvest.EndHarvest.ToString("dd.MM.yyyy")</td>
+                <td class="text-center">@harvest.UseHarvest</td>
+                <td class="text-center">@harvest.QuantityHarvest</td>
+                <td class="text-center">@harvest.CostHarvest</td>
+                <td class="text-center">@harvest.IdPlant</td>
+                <td class="text-center">@harvest.IdSale</td>
+                <td class="text-center">@harvest.NameHarvest</td>
+
+            </tr>
+            }
+
+        </tr>
+    </tbody>
+</table>
+@section styles{
+    <link rel="stylesheet" href="~/lib/jqueryui/themes/base/jquery-ui.css" />
+}

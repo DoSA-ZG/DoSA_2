@@ -1,0 +1,130 @@
+﻿@using RPPP_WebApp.ViewModels;
+@model PlantsViewModel;
+@{
+    ViewBag.Title = "Plant";
+}
+<h2>Plant list</h2>
+
+<a asp-action="Create">Add Plant</a>
+
+<pager page-info="@Model.PagingInfo" page-action="Index" page-title="Enter page"
+       class="float-end">
+</pager>
+<table class="table table-sm table-striped table-hover">
+    <thead>
+        <tr>
+            <th>
+                <a asp-route-sort="1" asp-route-page="@Model.PagingInfo.CurrentPage" asp-route-ascending="@(Model.PagingInfo.Sort == 1 ? !Model.PagingInfo.Ascending : true)">
+                    ID Plant
+                </a>
+            </th>
+            <th>
+                <a asp-route-sort="2" asp-route-page="@Model.PagingInfo.CurrentPage" asp-route-ascending="@(Model.PagingInfo.Sort == 2 ? !Model.PagingInfo.Ascending : true)">
+                    Species
+                </a>
+            </th>
+            <th>
+                <a asp-route-sort="3" asp-route-page="@Model.PagingInfo.CurrentPage" asp-route-ascending="@(Model.PagingInfo.Sort == 3 ? !Model.PagingInfo.Ascending : true)">
+                    Quantity
+                </a>
+            </th>
+            <th>
+                <a asp-route-sort="4" asp-route-page="@Model.PagingInfo.CurrentPage" asp-route-ascending="@(Model.PagingInfo.Sort == 4 ? !Model.PagingInfo.Ascending : true)">
+                    Origin
+                </a>
+            </th>
+            <th>
+                <a asp-route-sort="5" asp-route-page="@Model.PagingInfo.CurrentPage" asp-route-ascending="@(Model.PagingInfo.Sort == 5 ? !Model.PagingInfo.Ascending : true)">
+                    Plot Name
+                </a>
+            </th>
+            <th>
+                <a asp-route-sort="6" asp-route-page="@Model.PagingInfo.CurrentPage" asp-route-ascending="@(Model.PagingInfo.Sort == 6 ? !Model.PagingInfo.Ascending : true)">
+                    Use Harvest
+                </a>
+            </th>
+    
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var plant in Model.Plants)
+        {
+
+            <tr>
+                <td class="text-center">@plant.IdPlant</td>
+                <td class="text-center">@plant.Species</td>
+                <td class="text-center">@plant.Quantity</td>
+                <td class="text-center">@plant.Origin</td>
+                <td class="text-left">
+                    @if (@plant.IdPlotNavigation !=null)
+                    {
+                        <text>@plant.IdPlotNavigation.PlotName</text>
+                    }
+                    else
+                    {
+                        <text>No Plot</text>
+                    }
+                </td>
+
+                <td class="text-left">
+                    @if (@plant.Harvests.Any())
+                    {
+                        <text>@string.Join(",", plant.Harvests.Select(harvest => harvest.UseHarvest))</text>
+                    }
+                    else
+                    {
+                        <text>No Harvest</text>
+                    }
+                </td>
+
+                <td class="btn-group">
+                    <a asp-action="Details"
+                       asp-route-id="@plant.IdPlant"
+                       asp-route-page="@Model.PagingInfo.CurrentPage"
+                       asp-route-sort="@Model.PagingInfo.Sort"
+                       asp-route-ascending="@Model.PagingInfo.Ascending"
+                       class="btn btn-sm btn-primary" title="Details">
+                        Detail
+                        <i class="fas fa-pencil-square-o"></i>
+                    </a>
+                    <a asp-action="Edit"
+                       asp-route-id="@plant.IdPlant"
+                       asp-route-page="@Model.PagingInfo.CurrentPage"
+                       asp-route-sort="@Model.PagingInfo.Sort"
+                       asp-route-ascending="@Model.PagingInfo.Ascending"
+                       class="btn btn-sm" title="Edit">
+                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <form asp-action="Delete" method="post"
+                          asp-route-page="@Model.PagingInfo.CurrentPage"
+                          asp-route-sort="@Model.PagingInfo.Sort"
+                          asp-route-ascending="@Model.PagingInfo.Ascending">
+                        <input type="hidden" name="IdPlant" value="@plant.IdPlant" />
+
+
+                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
+                        <button type="submit" class="btn btn-sm btn-danger delete" title="Delete"><i class="fas fa-trash-alt"></i></button>
+                    </form>
+                </td>
+
+            </tr>
+
+        }
+    </tbody>
+</table>
+<div>
+    <a href="@Url.Action("GetStarted", "Home")">Back</a>
+</div>
+
+<script src="~/lib/toastr.js/toastr.min.js"
+        asp-append-version="true"></script>
+<script>
+    toastr.options = {
+        positionClass: "toast-bottom-right"
+    };
+</script>
+
+

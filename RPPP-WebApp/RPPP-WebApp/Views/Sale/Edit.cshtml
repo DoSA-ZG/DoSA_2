@@ -1,0 +1,141 @@
+﻿@using RPPP_WebApp.Models;
+@using RPPP_WebApp.ViewModels;
+@model SaleViewModel
+@{
+    ViewBag.Title = "Edit Sale";
+}
+
+@*<form asp-route-id="@Model.IdSale"
+      asp-route-page="@ViewBag.Page"
+      asp-route-sort="@ViewBag.Sort"
+      asp-route-ascending="@ViewBag.Ascending"
+      method="post">
+
+    <div class="mb-3">
+        <label asp-for="PlantSeedling " class="form-label"></label>
+        <input asp-for="PlantSeedling " class="form-control" />
+        <div class="form-text"><span asp-validation-for="PlantSeedling " class="text-danger"></span></div>
+    </div>
+    <div class="mb-3">
+        <label asp-for="QuantitySale" class="form-label"></label>
+        <input asp-for="QuantitySale" class="form-control" />
+        <div class="form-text"><span asp-validation-for="QuantitySale" class="text-danger"></span></div>
+    </div>
+    <div class="mb-3">
+        <label asp-for="PriceSale" class="form-label"></label>
+        <input asp-for="PriceSale" class="form-control" />
+        <div class="form-text"><span asp-validation-for="PriceSale" class="text-danger"></span></div>
+    </div>
+    <div class="mb-3">
+        <label asp-for="IdHarvest " class="form-label"></label>
+        <select class="form-select" asp-for="IdHarvest" asp-items="ViewBag.Harvest">
+            <option disabled selected value="">Choose a Harvest</option>
+        </select>
+        <div class="form-text"><span asp-validation-for="IdHarvest " class="text-danger"></span></div>
+    </div>
+    <div class="mb-3">
+        <label asp-for="IdPerson" class="form-label"></label>
+        <select class="form-select" asp-for="IdPerson" asp-items="ViewBag.Person">
+            <option disabled selected value="">Choose a Person</option>
+        </select>
+        <div class="form-text"><span asp-validation-for="IdPerson" class="text-danger"></span></div>
+    </div>
+    <div class="mb-3">
+        <label asp-for="IdAnonymous" class="form-label"></label>
+        <input asp-for="IdAnonymous" class="form-control" />
+        <div class="form-text"><span asp-validation-for="IdAnonymous" class="text-danger"></span></div>
+    </div>
+    <div class="text-center">
+        <button class="btn btn-primary" type="submit">Save</button>
+        <a asp-action="Index"
+           asp-route-page="@ViewBag.Page"
+           asp-route-sort="@ViewBag.Sort"
+           asp-route-ascending="@ViewBag.Ascending"
+           class="btn btn-secondary">Cancel</a>
+    </div>
+    <div asp-validation-summary="All"></div>
+</form>
+@section scripts {
+    <partial name="IncludeValidation" />
+}*@
+
+<div class="container">
+    <form method="post" asp-action="Edit"
+          asp-route-page="@ViewBag.Page"
+          asp-route-sort="@ViewBag.Sort"
+          asp-route-ascending="@ViewBag.Ascending">
+        <input type="hidden" asp-for="IdSale" />
+        <div asp-validation-summary="All" class="form-group row"></div>
+
+        <div class="form-group row">
+
+
+            <div class="col-sm-2">
+                <button id="save" type="submit" class="btn btn-sm btn-primary save" title="Save"><i class="fas fa-save"></i></button>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+                <a class="btn btn-sm btn-primary cancel"
+                   asp-action="Edit"
+                   asp-route-id="@Model.IdSale"
+                   asp-route-page="@ViewBag.Page"
+                   asp-route-sort="@ViewBag.Sort"
+                   asp-route-ascending="@ViewBag.Ascending"
+                   title="Refresh">
+                    <i class="fas fa-sync-alt"></i>
+                </a>
+                <a class="btn btn-sm btn-primary cancel"
+                   asp-action="Index"
+                   asp-route-page="@ViewBag.Page"
+                   asp-route-sort="@ViewBag.Sort"
+                   asp-route-ascending="@ViewBag.Ascending"
+                   title="Cancel">
+                    <i class="fas fa-undo-alt"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="form row">
+            <label asp-for="PlantSeedling" class="col-sm-1 col-form-label"></label>
+            <div class="col-sm-2">
+                <input asp-for="PlantSeedling" class="form-control" />
+            </div>
+            <label asp-for="QuantitySale" class="col-sm-1 col-form-label"></label>
+            <div class="col-sm-2">
+                <input asp-for="QuantitySale" class="form-control" />
+            </div>
+
+            <div class="form-group row">
+                <label asp-for="PriceSale" class="col-sm-1 col-form-label"></label>
+                <div class="col-sm-2">
+                    <input asp-for="PriceSale" class="form-control" />
+                </div>
+
+                <label asp-for="IdHarvest" class="col-sm-1 col-form-label"></label>
+                <div class="col-sm-2">
+                    <input asp-for="IdHarvest" class="form-control" />
+                </div>
+
+                <label asp-for="IdPerson" class="form-label"></label>
+                <div class="col-sm-2">
+                    <select class="form-select" asp-for="IdPerson" asp-items="ViewBag.Soil">
+                        <option selected value="">Choose a person (Can't choose a person because the person who's in charge of this MD didn't do it)'</option>
+                    </select>
+                </div>
+                <div class="form-text"><span asp-validation-for="IdPerson" class="col-sm-2"></span></div>
+                <label asp-for="IdAnonymous" class="form-label"></label>
+                <div class="col-sm-2">
+                    <input asp-for="IdAnonymous" class="form-control" />
+                </div>
+                <div class="form-text"><span asp-validation-for="IdPerson" class="text-danger"></span></div>
+
+            </div>
+        </div>
+
+        <div class="col-sm-10">
+            <partial name="Harvests" model="Model.Harvests" />
+        </div>
+
+    </form>
+</div>
+@section scripts {
+    <partial name="IncludeValidation" />
+}

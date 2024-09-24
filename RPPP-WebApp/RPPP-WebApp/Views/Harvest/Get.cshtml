@@ -1,0 +1,33 @@
+﻿@using RPPP_WebApp.Controllers
+@model RPPP_WebApp.ViewModels.HarvestViewModel
+
+
+<tr hx-target="this" hx-swap="outerHTML">
+    <td class="text-left">@Model.IdHarvest</td>
+    <td class="text-left">@Model.NameHarvest</td>
+    <td class="text-left">@Model.StartHarvest.ToString("dd.MM.yyyy")</td>
+    <td class="text-left">@Model.EndHarvest.ToString("dd.MM.yyyy")</td>
+    <td class="text-left">@Model.IdPlant</td>
+    <td class="text-left">@Model.QuantityHarvest</td>
+    <td class="text-left">@Model.UseHarvest</td>
+    <td class="text-left">@Model.CostHarvest</td>
+    <td class="text-left">@Model.IdSale</td>
+      
+  <td>
+    <a class="btn btn-sm"
+       hx-get="@Url.Action(nameof(HarvestController.Edit), new { id = Model.IdHarvest })"
+       title="Edit"><i class="fas fa-edit"></i></a>
+  </td>
+  <td>   
+      <button class="btn btn-sm btn-danger"
+              hx-confirm="Delete city?"
+              hx-delete="@Url.Action(nameof(HarvestController.Delete), new { id = Model.IdHarvest })"
+              title="Delete">
+        <i class="fas fa-trash-alt"></i>
+      </button> 
+  </td>
+</tr>
+
+
+
+}

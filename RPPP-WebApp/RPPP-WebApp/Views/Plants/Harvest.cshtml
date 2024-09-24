@@ -1,0 +1,63 @@
+﻿@using RPPP_WebApp.ViewModels;
+@using RPPP_WebApp.Models;
+@model ICollection<HarvestViewModel>
+
+<table class="table table-striped" id="table-items">
+    <thead>
+        <tr>
+            @{
+                string[] headers = { "Harvest Id", "Start Harvest", "End Harvest", "Use Harvest", "Quantity Harvest", "Cost Harvest", "Id Plant ", "Id Sale", "Name Harvest" };
+                for (int i = 0; i < headers.Length; i++)
+                {
+                    <th class="text-center">
+                        @headers[i]
+                    </th>
+                }
+            }
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var harvest in Model)
+        {
+            <tr>
+                <td class="text-left col-sm-auto">
+                    <input type="hidden" name="Harvests.Index" value="@harvest.IdHarvest" />
+                    <input type="hidden" name="Harvests[@harvest.IdHarvest].IdHarvest" value="@harvest.IdHarvest" />
+                    @harvest.IdHarvest
+                </td>
+                <td class="text-center col-sm-auto">
+                    <input name="Harvests[@harvest.IdHarvest].StartHarvest" class="form-control" value="@harvest.StartHarvest" />
+                </td>
+                <td class="text-center col-sm-auto">
+                    <input name="Harvests[@harvest.IdHarvest].EndHarvest" class="form-control" value="@harvest.EndHarvest" />
+                </td>
+                <td class="text-center col-sm-auto">
+                    <input name="Harvests[@harvest.IdHarvest].UseHarvest" class="form-control" value="@harvest.UseHarvest" />
+                </td>
+                <td class="text-center col-sm-auto">
+                    <input name="Harvests[@harvest.IdHarvest].QuantityHarvest" class="form-control" value="@harvest.QuantityHarvest" />
+                </td>
+                <td class="text-center col-sm-auto">
+                    <input name="Harvests[@harvest.IdHarvest].CostHarvest" class="form-control" value="@harvest.CostHarvest" />
+                </td>
+                <td class="text-left col-sm-auto">
+                    @harvest.IdPlant
+                </td>
+                <td class="text-left col-sm-auto">
+                    @harvest.IdSale
+                </td>
+                <td class="text-center col-sm-auto">
+                    <input name="Harvests[@harvest.IdHarvest].NameHarvest" class="form-control" value="@harvest.NameHarvest" />
+                </td>
+                <td>
+                    <input type="hidden" name="IdHarvest" value="@harvest.IdHarvest" />
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+                    <button type="submit" class="btn btn-sm btn-danger deleterow" title="Delete">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

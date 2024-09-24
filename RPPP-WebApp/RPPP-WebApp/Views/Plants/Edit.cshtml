@@ -1,0 +1,119 @@
+﻿@using RPPP_WebApp.Models;
+@using RPPP_WebApp.ViewModels;
+@model PlantsViewModel
+@{
+    ViewBag.Title = "Edit Plant";
+}
+<div class="container">
+    <form method="post" asp-action="Edit"
+          asp-route-page="@ViewBag.Page"
+          asp-route-sort="@ViewBag.Sort"
+          asp-route-ascending="@ViewBag.Ascending">
+        <input type="hidden" asp-for="IdPlant" />
+        <div asp-validation-summary="All" class="form-group row"></div>
+        <div class="form-group row">
+
+
+            <div class="col-sm-2">
+                <button id="save" type="submit" class="btn btn-sm btn-primary save" title="Save"><i class="fas fa-save"></i></button>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+                <a class="btn btn-sm btn-primary cancel"
+                   asp-action="Edit"
+                   asp-route-id="@Model.IdPlot"
+                   asp-route-page="@ViewBag.Page"
+                   asp-route-sort="@ViewBag.Sort"
+                   asp-route-ascending="@ViewBag.Ascending"
+                   title="Refresh">
+                    <i class="fas fa-sync-alt"></i>
+                </a>
+                <a class="btn btn-sm btn-primary cancel"
+                   asp-action="Index"
+                   asp-route-page="@ViewBag.Page"
+                   asp-route-sort="@ViewBag.Sort"
+                   asp-route-ascending="@ViewBag.Ascending"
+                   title="Cancel">
+                    <i class="fas fa-undo-alt"></i>
+                </a>
+            </div>
+        </div>
+        
+        <div class="form-row">
+           
+            <div class="mb-3">
+                <label asp-for="Species " class="form-label"></label>
+                <input asp-for="Species " class="form-control" />
+                <div class="form-text"><span asp-validation-for="Species " class="text-danger"></span></div>
+            </div>
+            <div class="mb-3">
+                <label asp-for="SpeciesGroup" class="form-label"></label>
+                <input asp-for="SpeciesGroup" class="form-control" />
+                <div class="form-text"><span asp-validation-for="SpeciesGroup" class="text-danger"></span></div>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="FruitVegetable" class="form-label"></label>
+                <input asp-for="FruitVegetable" class="form-control" />
+                <div class="form-text"><span asp-validation-for="FruitVegetable" class="text-danger"></span></div>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Origin" class="form-label"></label>
+                <input asp-for="Origin" class="form-control" />
+                <div class="form-text"><span asp-validation-for="Origin" class="text-danger"></span></div>
+
+            </div>
+            <div class="mb-3">
+                <label asp-for="Quantity" class="form-label"></label>
+                <input asp-for="Quantity" class="form-control" />
+                <div class="form-text"><span asp-validation-for="Quantity" class="text-danger"></span></div>
+
+            </div>
+            <div class="mb-3">
+                <label asp-for="StartDate" class="form-label"></label>
+                <input asp-for="StartDate" class="form-control" />
+                <div class="form-text"><span asp-validation-for="StartDate" class="text-danger"></span></div>
+
+            </div>
+            <div class="mb-3">
+                <label asp-for="EndDate" class="form-label"></label>
+                <input asp-for="EndDate" class="form-control" />
+                <div class="form-text"><span asp-validation-for="EndDate" class="text-danger"></span></div>
+
+            </div>
+            <div class="mb-3">
+                <label asp-for="Product" class="form-label"></label>
+                <input asp-for="Product" class="form-control" />
+                <div class="form-text"><span asp-validation-for="Product" class="text-danger"></span></div>
+
+            </div>
+            <div class="mb-3">
+                <label asp-for="ProductDate" class="form-label"></label>
+                <input asp-for="ProductDate" class="form-control" />
+                <div class="form-text"><span asp-validation-for="ProductDate" class="text-danger"></span></div>
+
+            </div>
+            <div class="mb-3">
+                <label asp-for="IdPlot" class="form-label"></label>
+                <select class="form-select" asp-for="IdPlot" asp-items="ViewBag.Plot">
+                    <option disabled selected value="">Choose a Plot</option>
+                </select>
+                <div class="form-text"><span asp-validation-for="IdPlot" class="text-danger"></span></div>
+            </div>
+        </div>
+       
+   
+        
+        <div class="col-sm-10">
+            <partial name="Harvest" model="Model.Harvests" />
+        </div>
+
+        <div asp-validation-summary="All"></div>
+    </form>
+</div>
+@section styles{
+    <link rel="stylesheet" href="~/lib/jqueryui/themes/base/jquery-ui.css" />
+}
+@section scripts {
+    <partial name="IncludeValidation" />
+    <script src="~/js/plant.js" asp-append-version="true"></script>
+}

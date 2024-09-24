@@ -1,0 +1,30 @@
+﻿@using RPPP_WebApp.Models
+@model Soil
+@{
+    ViewBag.title = "Add new soil";
+}
+<h2>Add new soil</h2>
+
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="All"></div>
+    <div class="mb-3">
+        <label asp-for="IdSoil" class="form-label"></label>
+        <input asp-for="IdSoil" class="form-control"  />
+        <div class="form-text"><span asp-validation-for="IdSoil" class="text-danger"></span></div>
+    </div>
+    <div class="mb-3">
+        <label asp-for="SoilName" class="form-label"></label>
+        <input asp-for="SoilName" class="form-control" />
+        <div class="form-text"><span asp-validation-for="SoilName" class="text-danger"></span></div>
+    </div>
+
+    <div class="text-center">
+        <button class="btn btn-primary" type="submit">Add</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </div>
+    <div asp-validation-summary="All"></div>
+</form>
+
+@section scripts {
+    <partial name="IncludeValidation" />
+}

@@ -1,0 +1,68 @@
+﻿@using RPPP_WebApp.Models;
+@model Plot
+@{
+    ViewBag.title = "Add new plot";
+}
+<h2>Add new plot</h2>
+
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="All"></div>
+    <div class="mb-3">
+        <label asp-for="IdPlot" class="form-label"></label>
+        <input asp-for="IdPlot" class="form-control" min="1" />
+        <div class="form-text"><span asp-validation-for="IdPlot" class="text-danger"></span></div>
+    </div>
+    <div class="mb-3">
+        <label asp-for="PlotName" class="form-label"></label>
+        <input asp-for="PlotName" class="form-control" />
+        <div class="form-text"><span asp-validation-for="PlotName" class="text-danger"></span></div>
+    </div>
+    <div class="mb-3">
+        <label asp-for="PlotGps" class="form-label"></label>
+        <input  asp-for="PlotGps" class="form-control" />
+        <div class="form-text"><span asp-validation-for="PlotGps" class="text-danger"></span></div>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Infrastructure" class="form-label"></label>
+        <input  asp-for="Infrastructure" class="form-control" />
+        <div class="form-text"><span asp-validation-for="Infrastructure" class="text-danger"></span></div>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Material" class="form-label"></label>
+        <input asp-for="Material" class="form-control" />
+        <div class="form-text"><span asp-validation-for="Material" class="text-danger"></span></div>
+    </div>
+    <div class="mb-3">
+        <label asp-for="SunIntensity" class="form-label"></label>
+        <input asp-for="SunIntensity" class="form-control" min="0" />
+        <div class="form-text"><span asp-validation-for="SunIntensity" class="text-danger"></span></div>
+    </div>
+    <div class="mb-3">
+        <label asp-for="IdLease" class="form-label"></label>
+        <select class="form-select" asp-for="IdLease" asp-items="ViewBag.Lease">
+            <option selected value="">Choose a Lease</option>
+        </select>
+        <div class="form-text"><span asp-validation-for="IdLease" class="text-danger"></span></div>
+    </div>
+    <div class="mb-3">
+        <label asp-for="IdSoil" class="form-label"></label>
+        <select class="form-select" asp-for="IdSoil" asp-items="ViewBag.Soil">
+            <option disabled selected value="">Choose a Soil</option>
+        </select>
+        <div class="form-text"><span asp-validation-for="IdSoil" class="text-danger"></span></div>
+    </div>
+
+    <div class="text-center">
+        <button class="btn btn-primary" type="submit">Add</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </div>
+    <div asp-validation-summary="All"></div>
+</form>
+
+@section styles{
+    <link rel="stylesheet" href="~/lib/jqueryui/themes/base/jquery-ui.css" />
+ }
+
+@section scripts {
+    <partial name="IncludeValidation" />
+}

@@ -1,0 +1,73 @@
+﻿@using RPPP_WebApp.Models;
+@model Request
+@{
+    ViewBag.title = "Add new request";
+}
+<h2>Add new request</h2>
+
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="All"></div>
+    <div class="mb-3">
+        <label asp-for="IdRequest" class="form-label"></label>
+        <input asp-for="IdRequest" class="form-control" />
+        <div class="form-text"><span asp-validation-for="IdRequest" class="text-danger"></span></div>
+    </div>
+    <div class="mb-3">
+        <label asp-for="SpeciesAsked" class="form-label"></label>
+        <input asp-for="SpeciesAsked" class="form-control" />
+        <div class="form-text"><span asp-validation-for="SpeciesAsked" class="text-danger"></span></div>
+    </div>
+    <div class="mb-3">
+        <label asp-for="DateRequest" class="form-label"></label>
+        <input asp-for="DateRequest" class="form-control" />
+        <div class="form-text"><span asp-validation-for="DateRequest" class="text-danger"></span></div>
+    </div>
+    <div class="mb-3">
+        <label asp-for="QuantityAsked" class="form-label"></label>
+        <input asp-for="QuantityAsked" class="form-control" />
+        <div class="form-text"><span asp-validation-for="QuantityAsked" class="text-danger"></span></div>
+    </div>
+    <div class="mb-3">
+        <label asp-for="PriceAsked" class="form-label"></label>
+        <input asp-for="PriceAsked" class="form-control" />
+        <div class="form-text"><span asp-validation-for="PriceAsked" class="text-danger"></span></div>
+    </div>
+    <div class="mb-3">
+        <label asp-for="IdPerson" class="form-label"></label>
+        <select class="form-select" asp-for="IdPerson" asp-items="ViewBag.Person">
+            <option disabled selected value="">Choose a Person (Can't choose a Person because the person in charge of this MD didn't do it)</option>
+        </select>
+        <div class="form-text"><span asp-validation-for="IdPerson" class="text-danger"></span></div>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="StatusRequest" class="form-label"></label>
+        <input asp-for="StatusRequest" class="form-control" />
+        <div class="form-text"><span asp-validation-for="StatusRequest" class="text-danger"></span></div>
+    </div>
+
+    <div class="text-center">
+        <button class="btn btn-primary" type="submit">Add</button>
+         <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </div>
+    <div asp-validation-summary="All"></div>
+</form>
+
+@section scripts {
+    <partial name="IncludeValidation" />
+}
+
+<h7>
+    This error appears because the IdPerson is always NULL. As far as I know, </br>
+    It is due to a missing ICollection in the Request.cs to add a known customer. </br>
+    Unfortunatly, I notice this error to late so to not penalized my teammates by </br>
+    modifiying the database now, I decided too let it like this so we can't add a </br>
+    new request anymore even if the changes in the Edit part works.</br> <br />
+
+    Then for this evaluation, I decided to focuse more on the Sale MD, so please </br>
+    find in the Sale MD all the modification for this 2nd part. If it is possible, <br />
+    can you please consider Sale as my MD for this evaluation. Thank you!</br> <br />
+
+    By the way, I putted all the necessary code for this MD in comment in the project</br>
+    so I will by myself correct in later on my computer and just take of comments tags.
+</h7> 

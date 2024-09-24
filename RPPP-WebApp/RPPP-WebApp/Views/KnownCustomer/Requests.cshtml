@@ -1,0 +1,56 @@
+﻿@using RPPP_WebApp.ViewModels;
+@using RPPP_WebApp.Models;
+@model IEnumerable<RequestViewModel>
+<table class="table table-striped" id="table-items">
+    <thead>
+        <tr>
+            @{
+                string[] headers = { "Request ID", "Species Name", "Request Date", "Quantity", "Price", "Id Person", "Request Status" };
+                for (int i = 0; i < headers.Length; i++)
+                {
+                    <th class="text-left">
+                        @headers[i]
+                    </th>
+                }
+            }
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var request in Model)
+        {
+
+            <tr>
+
+                <td class="text-left col-sm-auto">
+                    <input type="hidden" name="Requests.Index" value="@request.IdRequest" />
+                    <input type="hidden" name="Requests[@request.IdRequest].IdPerson" value="@request.IdRequest" />
+                    @request.IdRequest
+                </td>
+                <td class="text-center col-sm-auto">
+                    <input name="Requests[@request.IdRequest].SpeciesAsked" class="form-control" value="@request.SpeciesAsked" />
+                </td>
+                <td class="text-center col-sm-auto">
+                    <input name="Requests[@request.IdRequest].DateRequest" class="form-control datum" value="@request.DateRequest" />
+                </td>
+                
+                <td class="text-center col-sm-auto">
+                    <input name="Requests[@request.IdRequest].QuantityAsked" class="form-control" value="@request.QuantityAsked" />
+                </td>
+                <td class="text-center col-sm-auto">
+                    <input name="Requests[@request.IdRequest].PriceAsked" class="form-control" value="@request.PriceAsked" />
+                </td>
+                <td class="text-left col-sm-auto">
+                    @request.IdPerson
+                </td>
+                <td class="text-left col-sm-auto">
+                    <input name="Requests[@request.IdRequest].StatusRequest" class="form-control" value="@request.StatusRequest" />
+                </td>
+                <td>
+                    <button class="btn btn-sm btn-danger deleterow" title="Remove"><i class="fa fa-minus"></i></button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

@@ -1,0 +1,48 @@
+﻿@using RPPP_WebApp.Models;
+@model IEnumerable<Request>
+@{
+    ViewData["Title"] = "Request list";
+}
+
+<h2>Request list</h2>
+<a asp-action="Create">Add new request</a>
+
+<table class="table table-sm table-striped table-hover" id="table-request">
+    <thead>
+        <tr>
+            <th>Id Request</th>
+            <th>Species</th>
+            <th>Date</th>
+            <th>Quantity</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var request in Model)
+        {
+            <tr>
+                <td class="text-center">@request.IdRequest</td>
+                <td class="text-left">@request.SpeciesAsked</td>
+                <td class="text-center">@request.DateRequest</td>
+                <td class="text-left">@request.QuantityAsked</td>
+                <td class="text-center">@request.PriceAsked</td>
+                <td class="text-left">@request.IdPerson</td>
+                <td class="text-center">@request.StatusRequest</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section styles{
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css" />
+}
+
+@section scripts{
+    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#table-request').DataTable();
+        });
+    </script>
+}

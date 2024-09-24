@@ -1,0 +1,72 @@
+﻿@using RPPP_WebApp.Models;
+@model Worker
+@{
+    ViewBag.title = "Add Worker";
+}
+    
+<h2>Add new Worker</h2>
+
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="All"></div>
+
+    <div class="mb-3">
+        <label asp-for="IdPersonNavigation.IdPerson" class="form-label"></label>
+        <input asp-for="IdPersonNavigation.IdPerson" class="form-control" />
+        <div class="form-text"><span asp-validation-for="IdPersonNavigation.IdPerson" class="text-danger"></span></div>
+    </div>
+    
+    <div class="mb-3">
+        <label asp-for="IdPersonNavigation.FirstName" class="form-label"></label>
+        <input asp-for="IdPersonNavigation.FirstName" class="form-control" />
+        <div class="form-text"><span asp-validation-for="IdPersonNavigation.FirstName" class="text-danger"></span></div>
+    </div>
+    <div class="mb-3">
+        <label asp-for="IdPersonNavigation.LastName" class="form-label"></label>
+        <input asp-for="IdPersonNavigation.LastName" class="form-control" />
+        <div class="form-text"><span asp-validation-for="IdPersonNavigation.LastName" class="text-danger"></span></div>
+    </div>
+    <div class="mb-3">
+        <label asp-for="IdPersonNavigation.Mail" class="form-label"></label>
+        <input asp-for="IdPersonNavigation.Mail" class="form-control" />
+        <div class="form-text"><span asp-validation-for="IdPersonNavigation.Mail" class="text-danger"></span></div>
+    </div>
+    <div class="mb-3">
+        <label asp-for="IdPersonNavigation.Number" class="form-label"></label>
+        <input asp-for="IdPersonNavigation.Number" class="form-control" />
+        <div class="form-text"><span asp-validation-for="IdPersonNavigation.Number" class="text-danger"></span></div>
+    </div>
+    <div class="mb-3">
+        <label asp-for="IdPersonNavigation.Address" class="form-label"></label>
+        <input asp-for="IdPersonNavigation.Address" class="form-control" />
+        <div class="form-text"><span asp-validation-for="IdPersonNavigation.Address" class="text-danger"></span></div>
+    </div>
+  
+    <div class="mb-3">
+        <label asp-for="IdHarvest" class="form-label"></label>
+        <input asp-for="IdHarvest" class="form-control" />
+        <div class="form-text"><span asp-validation-for="IdHarvest" class="text-danger"></span></div>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Time" class="form-label"></label>
+        <input asp-for="Time" class="form-control" />
+        <div class="form-text"><span asp-validation-for="Time" class="text-danger"></span></div>
+
+    </div>
+    <div class="mb-3">
+        <label asp-for="Salary" class="form-label"></label>
+        <input asp-for="Salary" class="form-control" />
+        <div class="form-text"><span asp-validation-for="Salary" class="text-danger"></span></div>
+
+    </div>
+    
+    <div class="text-center">
+        <button class="btn btn-primary" type="submit">Add</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </div>
+    <div asp-validation-summary="All"></div>
+</form>
+
+@section scripts {
+    <partial name="IncludeValidation" />
+}

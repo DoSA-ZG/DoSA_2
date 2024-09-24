@@ -1,0 +1,90 @@
+﻿@using RPPP_WebApp.ViewModels;
+@model WorkerViewModel;
+@{
+    ViewBag.Title = "Worker";
+}
+<h2>Worker list</h2>
+<a asp-action="Create">Add Worker</a>
+
+<pager page-info="@Model.PagingInfo" page-action="Index" page-title="Enter page"
+       class="float-end">
+</pager>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                <a asp-route-sort="1" asp-route-page="@Model.PagingInfo.CurrentPage" asp-route-ascending="@(Model.PagingInfo.Sort == 1 ? !Model.PagingInfo.Ascending : true)">
+                    ID Person
+                </a>
+            </th>
+            <th>
+           Last Name
+            </th>
+            <th>
+                First Name
+            </th>
+            
+            <th>
+                <a asp-route-sort="2" asp-route-page="@Model.PagingInfo.CurrentPage" asp-route-ascending="@(Model.PagingInfo.Sort == 2 ? !Model.PagingInfo.Ascending : true)" >
+                    Id Harvest
+                </a>
+            </th>
+            <th>
+                <a asp-route-sort="3" asp-route-page="@Model.PagingInfo.CurrentPage" asp-route-ascending="@(Model.PagingInfo.Sort == 3 ? !Model.PagingInfo.Ascending : true)" >
+                    Time
+                </a>
+            </th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var worker in Model.Workers)
+        {
+
+            <tr>
+               <td class="text-left">@worker.IdPerson</td>
+                <td class="text-left">@worker.IdPersonNavigation.LastName</td>
+                <td class="text-left">@worker.IdPersonNavigation.FirstName</td>
+                <td class="text-left">@worker.IdHarvest</td>
+                <td class="text-left">@worker.Time</td>          
+                <td class="btn-group">
+                    <a asp-action="Detail"
+                       asp-route-id="@worker.IdPerson"
+                       asp-route-page="@Model.PagingInfo.CurrentPage"
+                       asp-route-sort="@Model.PagingInfo.Sort"
+                       asp-route-ascending="@Model.PagingInfo.Ascending"
+                       class="btn btn-sm btn-primary" title="Details">
+                       Detail
+                       <i class="fas fa-pencil-square-o"></i>
+                    </a>
+                    <a asp-action="Edit"
+                       asp-route-id="@worker.IdPerson"
+                       asp-route-page="@Model.PagingInfo.CurrentPage"
+                       asp-route-sort="@Model.PagingInfo.Sort"
+                       asp-route-ascending="@Model.PagingInfo.Ascending"
+                       class="btn btn-sm btn-warning" title="Edit">
+                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <form asp-action="Delete" method="post"
+                          asp-route-page="@Model.PagingInfo.CurrentPage"
+                          asp-route-sort="@Model.PagingInfo.Sort"
+                          asp-route-ascending="@Model.PagingInfo.Ascending">
+                        <input type="hidden" name="IdPerson" value="@worker.IdPerson" />
+                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+                        <button type="submit" class="btn btn-sm btn-danger delete" title="Delete"><i class="fas fa-trash-alt"></i></button>
+                    </form>
+                </td>
+
+            </tr>
+
+        }
+    </tbody>
+</table>
+@section scripts {
+    <script src="~/js/pager.js" asp-append-version="true"></script>
+}
+<div>
+    <a href="@Url.Action("GetStarted", "Home")">Back</a>
+</div>

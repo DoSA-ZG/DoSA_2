@@ -1,0 +1,66 @@
+﻿@using RPPP_WebApp.Models;
+@model Sale
+@{
+    ViewBag.title = "Add Sale";
+}
+<h2>Add new sale</h2>
+
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="All"></div>
+
+    <div class="mb-3">
+        <label asp-for="IdSale" class="form-label"></label>
+        <input asp-for="IdSale" class="form-control" />
+        <div class="form-text"><span asp-validation-for="IdSale" class="text-danger"></span></div>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="PlantSeedling" class="form-label"></label>
+        <input asp-for="PlantSeedling" class="form-control" />
+        <div class="form-text"><span asp-validation-for="PlantSeedling" class="text-danger"></span></div>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="QuantitySale" class="form-label"></label>
+        <input asp-for="QuantitySale" class="form-control" />
+        <div class="form-text"><span asp-validation-for="QuantitySale" class="text-danger"></span></div>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="PriceSale " class="form-label"></label>
+        <input asp-for="PriceSale " class="form-control" />
+        <div class="form-text"><span asp-validation-for="PriceSale " class="text-danger"></span></div>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="IdHarvest" class="form-label"></label>
+        <select class="form-select" asp-for="IdHarvest" asp-items="ViewBag.Harvest">
+            <option disabled selected value="">Choose a Harvest</option>
+        </select>
+        <div class="form-text"><span asp-validation-for="IdHarvest" class="text-danger"></span></div>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="IdPerson" class="form-label"></label>
+        <select class="form-select" asp-for="IdPerson" asp-items="ViewBag.Person">
+            <option disabled selected value="">Choose a Person (Can't choose a Person because the person in charge of this MD didn't do it)</option>
+        </select>
+        <div class="form-text"><span asp-validation-for="IdPerson" class="text-danger"></span></div>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="IdAnonymous " class="form-label"></label>
+        <input asp-for="IdAnonymous " class="form-control" />
+        <div class="form-text"><span asp-validation-for="IdAnonymous " class="text-danger"></span></div>
+    </div>
+
+    <div class="text-center">
+        <button class="btn btn-primary" type="submit">Add</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </div>
+    <div asp-validation-summary="All"></div>
+</form>
+
+@section scripts {
+    <partial name="IncludeValidation" />
+}

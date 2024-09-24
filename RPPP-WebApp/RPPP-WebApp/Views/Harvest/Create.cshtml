@@ -1,0 +1,77 @@
+﻿@using RPPP_WebApp.ViewModels;
+@model HarvestViewModel
+@{
+    ViewBag.title = "Add Harvest";
+}
+    
+<h2>Add new Harvest</h2>
+
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="All"></div>
+    <div class="mb-3">
+        <label asp-for="IdHarvest" class="form-label"></label>
+        <input asp-for="IdHarvest" class="form-control" />
+        <div class="form-text"><span asp-validation-for="IdHarvest" class="text-danger"></span></div>
+    </div>
+    <div class="mb-3">
+        <label asp-for="StartHarvest " class="form-label"></label>
+        <input asp-for="StartHarvest " class="form-control" />
+     
+    </div>
+    <div class="mb-3">
+        <label asp-for="EndHarvest" class="form-label"></label>
+        <input  asp-for="EndHarvest" class="form-control" />
+        
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="QuantityHarvest" class="form-label"></label>
+        <input asp-for="QuantityHarvest" class="form-control" />
+        <div class="form-text"><span asp-validation-for="QuantityHarvest" class="text-danger"></span></div>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="IdPlant" class="form-label"></label>
+        <select class="form-select" asp-for="IdPlant" asp-items="ViewBag.Plant">
+            <option selected value="">Choose a Plant</option>
+        </select>
+        <div class="form-text"><span asp-validation-for="IdPlant" class="text-danger"></span></div>
+
+    </div>
+    <div class="mb-3">
+        <label asp-for="UseHarvest" class="form-label"></label>
+        <input asp-for="UseHarvest" class="form-control" />
+        <div class="form-text"><span asp-validation-for="UseHarvest" class="text-danger"></span></div>
+
+    </div>
+    <div class="mb-3">
+        <label asp-for="CostHarvest" class="form-label"></label>
+        <input asp-for="CostHarvest" class="form-control" />
+        <div class="form-text"><span asp-validation-for="CostHarvest" class="text-danger"></span></div>
+
+    </div>
+    <div class="mb-3">
+        <label asp-for="NameHarvest" class="form-label"></label>
+        <input asp-for="NameHarvest" class="form-control" />
+        <div class="form-text"><span asp-validation-for="NameHarvest" class="text-danger"></span></div>
+
+    </div>
+    <div class="mb-3">
+        <label asp-for="IdSale" class="form-label"></label>
+        <select class="form-select" asp-for="IdSale" asp-items="ViewBag.Sale">
+            <option selected value="">Choose a Buyer</option>
+        </select>
+        <div class="form-text"><span asp-validation-for="IdSale" class="text-danger"></span></div>
+
+    </div>
+
+    <div class="text-center">
+        <button class="btn btn-primary" type="submit">Add</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </div>
+    <div asp-validation-summary="All"></div>
+</form>
+
+@section scripts {
+    <partial name="IncludeValidation" />
+}

@@ -1,0 +1,28 @@
+﻿@using RPPP_WebApp.Controllers
+@model RPPP_WebApp.ViewModels.SaleViewModel
+
+
+<tr hx-target="this" hx-swap="outerHTML">
+    <td class="text-left">@Model.IdSale</td>
+    <td class="text-left">@Model.PlantSeedling</td>
+    <td class="text-left">@Model.QuantitySale</td>
+    <td class="text-left">@Model.PriceSale</td>
+    <td class="text-left">@Model.IdHarvest</td>
+    <td class="text-left">@Model.IdPerson </td>
+    <td class="text-left">@Model.IdAnonymous</td>
+    
+
+    <td>
+        <a class="btn btn-sm"
+           hx-get="@Url.Action(nameof(SaleController.Edit), new { id = Model.IdSale })"
+           title="Edit"><i class="fas fa-edit"></i></a>
+    </td>
+    <td>
+        <button class="btn btn-sm btn-danger"
+                hx-confirm="Delete Sale?"
+                hx-delete="@Url.Action(nameof(HarvestController.Delete), new { id = Model.IdSale })"
+                title="Delete">
+            <i class="fas fa-trash-alt"></i>
+        </button>
+    </td>
+</tr>

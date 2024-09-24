@@ -1,0 +1,162 @@
+﻿@using RPPP_WebApp.Models;
+ @model RPPP_WebApp.ViewModels.PlotViewModel
+@{
+    ViewBag.Title = "Plot Details";
+}
+<h2>Plot Details</h2>
+
+<table class="table table-sm table-striped table-hover">
+    <thead>
+        <a asp-action="Edit"
+           asp-route-id="@Model.IdPlot"
+           class="btn btn-sm btn-warning" title="Edit">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+            <i class="fas fa-edit"></i>
+        </a>
+        <tr>
+            <th>
+                <a>
+                    Plot Id
+                </a>
+            </th>
+            <th>
+                <a>
+                    Plot Name
+                </a>
+            </th>
+                 <th>
+                <a >
+                    Plot GPS
+                </a>
+            </th>
+             <th>
+                <a >
+                    Infrastructure
+                </a>
+            </th>
+             <th>
+                <a >
+                    Material
+                </a>
+            </th>
+            <th>
+                <a>
+                    Sun Intensity
+                </a>
+            </th>
+            <th>
+                <a>
+                    Id Lease
+                </a>
+            </th>
+            <th>
+                <a>
+                    Id Soil
+                </a>
+            </th> 
+            <th></th>
+        </tr>
+        
+    </thead>
+    <tbody>
+        <tr >
+            <td class="text-center">@Model.IdPlot</td>
+            <td class="text-center">@Model.PlotName</td>
+            <td class="text-center">@Model.PlotGps</td>
+            <td class="text-center">@Model.Infrastructure</td>
+            <td class="text-center">@Model.Material</td>
+            <td class="text-center">@Model.SunIntensity</td>
+            <td class="text-center">@Model.IdLease</td>
+            <td class="text-center">@Model.IdSoil</td>
+        </tr>
+        
+    </tbody>
+</table> 
+<hr>
+<h2>Plants</h2>
+<table class="table table-sm table-striped table-hover">
+    
+    <thead>
+        <tr>
+            <th>
+                <a>
+                    Plant Id
+                </a>
+            </th>
+            <th>
+                <a>
+                    Species
+                </a>
+            </th>
+            <th>
+                <a>
+                    Species Group
+                </a>
+            </th>
+            <th>
+                <a>
+                    Fruit/Vegetables
+                </a>
+            </th>
+            <th>
+                <a>
+                    Origin
+                </a>
+            </th>
+            <th>
+                <a>
+                    Quantity
+                </a>
+            </th>
+            <th>
+                <a>
+                    Start Date
+                </a>
+            </th>
+            <th>
+                <a>
+                    End Date
+                </a>
+            </th>
+            <th>
+                <a>
+                    Product
+                </a>
+            </th>
+            <th>
+                <a>
+                    Product Date
+                </a>
+            </th>
+           
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            @foreach (var plant in Model.Plants)
+            {
+            <tr>
+                <td class="text-center">@plant.IdPlant</td>
+                <td class="text-center">@plant.Species</td>
+                <td class="text-center">@plant.SpeciesGroup</td>
+                <td class="text-center">@plant.FruitVegetable</td>
+                <td class="text-center">@plant.Origin</td>
+                <td class="text-center">@plant.Quantity</td>
+                <td class="text-center">@plant.StartDate.ToString("dd.MM.yyyy")</td>
+                <td class="text-center">@plant.EndDate.ToString("dd.MM.yyyy")</td>
+                <td class="text-center">@plant.Product</td>
+                <td class="text-center">@plant.ProductDate.ToString("dd.MM.yyyy")</td>
+            </tr>
+            }
+          </tr>
+                
+
+       
+    </tbody>
+</table>
+@section styles{
+    <link rel="stylesheet" href="~/lib/jqueryui/themes/base/jquery-ui.css" />
+}
+
+

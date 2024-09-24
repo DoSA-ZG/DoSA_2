@@ -1,0 +1,42 @@
+﻿@using RPPP_WebApp.Models;
+@model IEnumerable<Harvest>
+@{
+    ViewData["Title"] = "Harvest list";
+}
+<h2>Harvest list</h2>
+
+<table class="table table-sm table-striped table-hover" id="table-harvest">
+    <thead>
+        <tr>
+            <th>Harvest Id</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var harvest in Model)
+        {
+            <tr>
+                <td class="text">@harvest.IdHarvest</td>
+                <td class="text">@harvest.NameHarvest</td>
+                <td class="text">@harvest.StartHarvest</td>
+                <td class="text">@harvest.EndHarvest</td>
+                <td class="text">@harvest.IdPlant</td>
+                <td class="text">@harvest.QuantityHarvest</td>              
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section styles{
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css" />
+}
+
+@section scripts{
+    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#table-harvest').DataTable();
+        });
+    </script>
+}

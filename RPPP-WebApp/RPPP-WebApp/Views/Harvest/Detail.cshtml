@@ -1,0 +1,322 @@
+﻿@using RPPP_WebApp.Models;
+@model RPPP_WebApp.ViewModels.HarvestViewModel
+
+@{
+    ViewBag.Title = "`Harvest #"+@Model.IdHarvest+" Details";
+}
+
+<h2>Harvest Details</h2>
+
+
+
+<div class="container">
+    <div class="row text-center">
+        <div class="col-sm-2">
+            @if (ViewBag.Previous != null)
+            {
+                <a class="btn btn-sm btn-primary"
+                   asp-action="Detail"
+                   asp-route-page="@ViewBag.Page"
+                   asp-route-sort="@ViewBag.Sort"
+                   asp-route-ascending="@ViewBag.Ascending"
+                   asp-route-position="@(ViewBag.Position - 1)"
+                   asp-route-id="@ViewBag.Previous">
+                    <i class="fas fa-step-backward"></i>
+                </a>
+            }
+        </div>
+        <div class="col-sm-8">
+            <h4>
+                @Model.NameHarvest
+            </h4>
+        </div>
+        <div class="col-sm-2">
+            @if (ViewBag.Next != null)
+            {
+                <a class="btn btn-sm btn-primary" asp-action="Detail"
+                   asp-route-page="@ViewBag.Page"
+                   asp-route-sort="@ViewBag.Sort"
+                   asp-route-ascending="@ViewBag.Ascending"
+                   asp-route-position="@(ViewBag.Position + 1)"
+                   asp-route-id="@ViewBag.Next">
+                    <i class="fas fa-step-forward"></i>
+                </a>
+            }
+        </div>
+    </div>
+
+    @*
+    @if (Model.PreviousDocumentId != null)
+    {
+        <div class="row justify-content-sm-center">
+            <div class="col-sm-2">
+                Previous document:
+            </div>
+            <div class="col-sm-6">
+                <a asp-action="Show" asp-route-id="@Model.PreviousDocumentId" target="_blank">@Model.PreviousDocumentName</a>
+            </div>
+        </div>
+    }*@
+
+    <div class="row content-sm-center">
+        <div class="col-sm-2">
+            Harvest cost: @Model.CostHarvest.ToString("C2")
+        </div>
+        <div class="col-sm-2">
+            Start Harvest: @Model.StartHarvest.ToString("dd.MM.yyyy")
+        </div>
+        <div class="col-sm-2">
+            End Harvest: @Model.EndHarvest.ToString("dd.MM.yyyy")
+        </div>
+        <div class="col-sm-2">
+            Quantity: @Model.QuantityHarvest
+        </div>
+        <div class="col-sm-1">
+            Id Plant: @Model.IdPlant
+        </div>
+        <div class="col-sm-1">
+            Id Sale: @Model.IdSale
+        </div>
+        <div class="col-sm-4">
+            Use Harvest:@(Model.UseHarvest ?? "No value")
+        </div>
+        
+        <div class="col-sm-1 text-right">
+            <a asp-action="Edit"
+               asp-route-id="@Model.IdHarvest"
+               target="_blank"
+               class="btn btn-warning btn-sm" title="Ažuriraj"><i class="fas fa-edit"></i></a>
+        </div>
+        <div class="col-sm-1 text-right">
+            <form asp-action="Delete" method="post"
+                  asp-route-page="@ViewBag.Page"
+                  asp-route-sort="@ViewBag.Sort"
+                  asp-route-ascending="@ViewBag.Ascending"
+                  asp-route-position="@ViewBag.Position">
+                  
+                <input type="hidden" name="id" value="@Model.IdHarvest" />
+                <button type="submit" class="btn btn-sm btn-danger delete" title="Delete"><i class="fas fa-trash-alt"></i></button>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+            </form>
+            
+            
+        </div>
+        <div class="col-sm-1 text-left">
+            <a class="btn btn-sm btn-primary cancel"
+               asp-action="Index"
+               asp-route-page="@ViewBag.Page"
+               asp-route-sort="@ViewBag.Sort"
+               asp-route-ascending="@ViewBag.Ascending"
+
+               title="Back to Harvest list">
+                <i class="fas fa-undo-alt"></i>
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    @{
+                        string[] headers = { "Worker ID", "First Name", "Last Name", "Address", "Number","Mail","Time","Salary" };
+                        for (int i = 0; i < headers.Length; i++)
+                        {
+                            <th class="text-left">
+                                @headers[i]
+                            </th>
+                        }
+                    }
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var worker in Model.Workers)
+                {
+                    <tr>
+
+                        <td class="text-left col-sm-4">@worker.IdPerson</td>
+                        <td class="text-left col-sm-4">@worker.FirstName</td>
+                        <td class="text-left col-sm-4">@worker.LastName</td>
+                        <td class="text-left col-sm-4">@worker.Adresse</td>
+                        <td class="text-left col-sm-4">@worker.Number</td>
+                        <td class="text-left col-sm-4">@worker.Mail</td>
+                        <td class="text-left col-sm-4">@worker.Time</td>
+                        <td class="text-left col-sm-4">@worker.Salary</td>
+                    </tr>
+
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*
+<table class="table table-sm table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Harvest ID</th>
+            <th>Harvest Name</th>
+            <th>Start Harvest </th>
+            <th>End Harvest </th>
+            <th>Id Plant</th>
+            <th>Quantity Harvest</th>
+            <th> Use Harvest</th>
+            <th>Cost Harvest</th> 
+            <th>Sale ID</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr >
+          <td class="text-left">@Model.IdHarvest</td>
+          <td class="text-left">@Model.NameHarvest</td>
+            <td class="text-left">@Model.StartHarvest.ToString("dd.MM.yyyy")</td>
+            <td class="text-left">@Model.EndHarvest.ToString("dd.MM.yyyy")</td>
+          <td class="text-left">@Model.IdPlant</td>
+          <td class="text-left">@Model.QuantityHarvest</td>
+          <td class="text-left">@Model.UseHarvest</td>
+          <td class="text-left">@Model.CostHarvest</td>
+            <td class="text-left">@Model.IdSale</td>
+        </tr>
+    </tbody>
+</table> 
+<h2>Workers</h2>
+<table class="table table-sm table-striped table-hover">
+
+    <thead>
+        <tr>
+            <th>
+                <a>
+                    Worker ID
+                </a>
+            </th>
+            <th>
+                <a>
+                    First Name
+                </a>
+            </th>
+            <th>
+                <a>
+                    Last Name
+                </a>
+            </th>
+            <th>
+                <a>
+                    Address
+                </a>
+            </th>
+            <th>
+                <a>
+                    Number
+                </a>
+            </th>
+            <th>
+                <a>
+                    Mail
+                </a>
+            </th>
+            <th>
+                <a>
+                    Time
+                </a>
+            </th>
+            <th>
+                <a>
+                    Salary
+                </a>
+            </th>
+            
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            
+            
+            @foreach (var worker in Model.Workers)
+            {
+            <tr>
+
+                <td class="text-left col-sm-4">@worker.IdPerson</td>
+                <td class="text-left col-sm-4">>@worker.FirstName</td>
+               <td class="text-left col-sm-4">@worker.LastName</td>
+               <td class="text-left col-sm-4">@worker.Adresse</td>
+               <td class="text-left col-sm-4">@worker.Number</td>
+               <td class="text-left col-sm-4">@worker.Mail</td>
+               <td class="text-left col-sm-4">@worker.Time</td>
+               <td class="text-left col-sm-4">@worker.Salary</td>
+            </tr>
+            
+            }
+
+        
+    </tbody>
+</table>
+
+
+
+
+*@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@section styles{
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css" />
+}
+@section scripts{
+    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#table-harvest').DataTable();
+        });
+    </script>
+}
+
+

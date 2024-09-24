@@ -1,0 +1,115 @@
+﻿@model RPPP_WebApp.ViewModels.RequestViewModel
+@{
+    ViewBag.Title = "Request";
+}
+
+<h2>Request list</h2>
+
+<a asp-action="Create">Add new Request</a>
+
+<pager page-info="@Model.PagingInfo" page-action="Index" page-title="Enter page"
+       class="float-end">
+</pager>
+
+<h6>Please try to add a request</h6>
+<table class="table table-sm table-striped table-hover">
+    <thead>
+        <tr>
+            <th>
+                <a asp-route-sort="1" asp-route-page="@Model.PagingInfo.CurrentPage" asp-route-ascending="@(Model.PagingInfo.Sort == 1 ? !Model.PagingInfo.Ascending : true)">
+                    Request Id
+                </a>
+            </th>
+            <th>
+                <a asp-route-sort="2" asp-route-page="@Model.PagingInfo.CurrentPage" asp-route-ascending="@(Model.PagingInfo.Sort == 2 ? !Model.PagingInfo.Ascending : true)">
+                    Species asked
+                </a>
+            </th>
+            
+            <th>
+                <a asp-route-sort="6" asp-route-page="@Model.PagingInfo.CurrentPage" asp-route-ascending="@(Model.PagingInfo.Sort == 6 ? !Model.PagingInfo.Ascending : true)">
+                    Id Person
+                </a>
+            </th>
+            <th>
+                <a asp-route-sort="7" asp-route-page="@Model.PagingInfo.CurrentPage" asp-route-ascending="@(Model.PagingInfo.Sort == 7 ? !Model.PagingInfo.Ascending : true)">
+                    Status Request
+                </a>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var request in Model.Requests)
+        {
+            <tr>
+                <td class="text-left">@request.IdRequest</td>
+                <td class="text-left">@request.SpeciesAsked</td>
+               
+                <td class="text-left">
+                    @if (@request.IdPersonNavigation != null)
+                    {
+                        <text>@request.IdPersonNavigation.IdPerson</text>
+                    }
+                    else
+                    {
+                        <text>No Person find</text>
+                    }
+                </td>
+                <td class="text-left">@request.StatusRequest</td>
+                <td class="btn-group">
+                    <a asp-action="Details"
+                       asp-route-id="@request.IdRequest"
+                       asp-route-page="@Model.PagingInfo.CurrentPage"
+                       asp-route-sort="@Model.PagingInfo.Sort"
+                       asp-route-ascending="@Model.PagingInfo.Ascending"
+                       class="btn btn-sm btn-primary" title="Details">
+                        Details<i class="fas fa-pencil-square-o"></i>
+                    </a>
+                    <a asp-action="Edit"
+                       asp-route-id="@request.IdRequest"
+                       asp-route-page="@Model.PagingInfo.CurrentPage"
+                       asp-route-sort="@Model.PagingInfo.Sort"
+                       asp-route-ascending="@Model.PagingInfo.Ascending"
+                       class="btn btn-sm btn-warning" title="Edit">
+                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <form asp-action="Delete" method="post"
+                          asp-route-page="@Model.PagingInfo.CurrentPage"
+                          asp-route-sort="@Model.PagingInfo.Sort"
+                          asp-route-ascending="@Model.PagingInfo.Ascending">
+                        <input type="hidden" name="IdSale" value="@request.IdRequest" />
+                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+                        <button type="submit" class="btn btn-sm btn-danger delete" title="Delete">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div>
+    <a href="@Url.Action("GetStarted", "Home")">Back</a>
+</div>
+
+<script src="~/lib/toastr.js/toastr.min.js"
+        asp-append-version="true"></script>
+<script>
+    toastr.options = {
+        positionClass: "toast-bottom-right"
+    };
+</script>
+
+@section scripts {
+    <script>
+        document.body.addEventListener("showMessage", function (evt) {
+            toastr[evt.detail.messageType](evt.detail.message);
+        })
+        document.body.addEventListener("htmx:responseError",
+            function (evt) {
+                toastr["error"](evt.detail.error);
+            })
+    </script>
+}

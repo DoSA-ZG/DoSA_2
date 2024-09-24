@@ -1,0 +1,81 @@
+﻿@using RPPP_WebApp.ViewModels;
+@using RPPP_WebApp.Models;
+@model IEnumerable<PlantsViewModel>
+
+<table class="table table-striped" id="table-items">
+    <thead>
+        <tr>
+            @{
+                string[] headers = { "Species", "Species Group", "Quantity", "Origin", "FruitOrVegetable", "StartDate", "EndDate", "Product", "ProductDate" };
+                for (int i = 0; i < headers.Length; i++)
+                {
+                    <th class="text-center">
+                        @headers[i]
+                    </th>
+                }
+            }
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var plant in Model)
+        {
+            <tr>
+                <td class="text-left col-sm-auto">
+                    <input type="hidden" name="Plants.Index" value="@plant.IdPlant" />
+                    <input type="hidden" name="Plants[@plant.IdPlant].IdPlant" value="@plant.IdPlant" />
+                    @plant.Species
+                </td>
+                <td class="text-left col-sm-auto">
+                    @plant.SpeciesGroup
+                </td>
+                <td class="text-center col-sm-auto">
+                    <input name="Plants[@plant.IdPlant].Quantity" class="form-control" value="@plant.Quantity" />
+                </td>
+                 <td class="text-center col-sm-auto">
+                    <input name="Plants[@plant.IdPlant].Origin" class="form-control" value="@plant.Origin" />
+                </td>
+                <td class="text-left col-sm-auto">
+                    @plant.FruitVegetable
+                </td>
+                <td class="text-center col-sm-auto">
+                    <input name="Plants[@plant.IdPlant].StartDate" class="form-control" value="@plant.StartDate" />
+                </td>
+                <td class="text-center col-sm-auto">
+                    <input name="Plants[@plant.IdPlant].EndDate" class="form-control" value="@plant.EndDate" />
+                </td>
+                <td class="text-center col-sm-auto">
+                    <input name="Plants[@plant.IdPlant].Product" class="form-control" value="@plant.Product" />
+                </td>
+                <td class="text-center col-sm-auto">
+                    <input name="Plants[@plant.IdPlant].ProductDate" class="form-control" value="@plant.ProductDate" />
+                </td>
+                <td>
+                    <input type="hidden" name="IdPlant" value="@plant.IdPlant" />
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+                    <button type="submit" class="btn btn-sm btn-danger deleterow" title="Delete">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </td>
+            </tr>
+        }
+       @*  <tr>
+            <td>
+                <input id="product-number" type="hidden" data-autocomplete-placeholder="products" readonly="readonly" />
+                <input id="product-name" type="text" data-autocomplete="products" />
+            </td>
+            <td class="text-center col-sm-1">
+                <input id="product-quantity" type="text" />
+            </td>
+            <td class="text-center col-sm-1">
+                <input id="product-discount" type="text" />
+            </td>
+            <td class="text-right col-sm-2">
+                <input id="product-price" type="text" data-autocomplete-placeholder-price="products" readonly="readonly" />
+            </td>
+            <td class="text-left" colspan="3">
+                <button id="product-add" class="btn btn-sm btn-secondary" title="Add"><i class="fas fa-plus"></i></button>
+            </td>
+        </tr> *@
+    </tbody>
+</table>

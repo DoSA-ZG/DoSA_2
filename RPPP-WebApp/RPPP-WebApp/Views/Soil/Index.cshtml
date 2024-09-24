@@ -1,0 +1,84 @@
+﻿@model RPPP_WebApp.ViewModels.SoilViewModel
+@{
+    ViewBag.Title = "Soil";
+}
+
+<h2>Soil list</h2>
+
+<a asp-action="Create">Add new Soil</a>
+
+<pager page-info="@Model.PagingInfo" page-action="Index" page-title="Enter page"
+       class="float-end">
+</pager>
+
+<table class="table table-sm table-striped table-hover">
+    <thead>
+        <tr>
+            <th>
+                <a asp-route-sort="1" asp-route-page="@Model.PagingInfo.CurrentPage" asp-route-ascending="@(Model.PagingInfo.Sort == 1 ? !Model.PagingInfo.Ascending : true)">
+                    Soil Id
+                </a>
+            </th>
+            <th>
+                <a asp-route-sort="2" asp-route-page="@Model.PagingInfo.CurrentPage" asp-route-ascending="@(Model.PagingInfo.Sort == 2 ? !Model.PagingInfo.Ascending : true)">
+                    Soil Name
+                </a>
+            </th>
+            <th>
+                    Plot with this soil
+            </th> 
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var soil in Model.Soil)
+        {
+            <tr>
+                <td class="text-left">@soil.IdSoil</td>
+                <td class="text-left">@soil.SoilName</td>
+                <td class="text-left">
+                    @if (@soil.Plots.Any())
+                    {
+                        <text>@string.Join(",",soil.Plots.Select(plot => plot.PlotName))</text>
+                    }
+                    else
+                    {
+                        <text>No plots</text>
+                    }
+                </td>
+                <td class="btn-group">
+                    <a asp-action="Details"
+                       asp-route-id="@soil.IdSoil"
+                       asp-route-page="@Model.PagingInfo.CurrentPage"
+                       asp-route-sort="@Model.PagingInfo.Sort"
+                       asp-route-ascending="@Model.PagingInfo.Ascending"
+                       class="btn btn-sm btn-primary" title="Details">
+                        Details<i class="fas fa-pencil-square-o"></i>
+                    </a>
+                    <a asp-action="Edit"
+                       asp-route-id="@soil.IdSoil"
+                       asp-route-page="@Model.PagingInfo.CurrentPage"
+                       asp-route-sort="@Model.PagingInfo.Sort"
+                       asp-route-ascending="@Model.PagingInfo.Ascending"
+                       class="btn btn-sm btn-warning" title="Edit">
+                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <form asp-action="Delete" method="post"
+                          asp-route-page="@Model.PagingInfo.CurrentPage"
+                          asp-route-sort="@Model.PagingInfo.Sort"
+                          asp-route-ascending="@Model.PagingInfo.Ascending">
+                        <input type="hidden" name="Idsoil" value="@soil.IdSoil" />
+                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+                        <button type="submit" class="btn btn-sm btn-danger delete" title="Delete">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div>
+    <a href="@Url.Action("GetStarted", "Home")">Back</a>
+</div>

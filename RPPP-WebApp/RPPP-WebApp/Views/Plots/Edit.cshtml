@@ -1,0 +1,100 @@
+﻿@using RPPP_WebApp.Models;
+@using RPPP_WebApp.ViewModels;
+@model PlotViewModel
+
+@{
+    ViewBag.Title = "Edit Plot";
+}
+
+<div class="container">
+    <form method="post" asp-action="Edit"
+          asp-route-page="@ViewBag.Page"
+          asp-route-sort="@ViewBag.Sort"
+          asp-route-ascending="@ViewBag.Ascending">
+        <input type="hidden" asp-for="IdPlot" />
+        <div asp-validation-summary="All" class="form-group row"></div>
+
+        <div class="form-group row">
+
+            
+            <div class="col-sm-2">
+                <button id="save" type="submit" class="btn btn-sm btn-primary save" title="Save"><i class="fas fa-save"></i></button>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+                <a class="btn btn-sm btn-primary cancel"
+                   asp-action="Edit"
+                   asp-route-id="@Model.IdPlot"
+                   asp-route-page="@ViewBag.Page"
+                   asp-route-sort="@ViewBag.Sort"
+                   asp-route-ascending="@ViewBag.Ascending"
+                   
+                   title="Refresh">
+                    <i class="fas fa-sync-alt"></i>
+                </a>
+                <a class="btn btn-sm btn-primary cancel"
+                   asp-action="Index"
+                   asp-route-page="@ViewBag.Page"
+                   asp-route-sort="@ViewBag.Sort"
+                   asp-route-ascending="@ViewBag.Ascending"
+                   title="Cancel">
+                    <i class="fas fa-undo-alt"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="form row">
+            <label asp-for="PlotName" class="col-sm-1 col-form-label"></label>
+            <div class="col-sm-2">
+                <input asp-for="PlotName" class="form-control" />
+            </div>
+                <label asp-for="PlotGps" class="col-sm-1 col-form-label"></label>
+            <div class="col-sm-2">
+                <input asp-for="PlotGps" class="form-control" />
+            </div>
+
+            <div class="form-group row">
+                <label asp-for="Infrastructure" class="col-sm-1 col-form-label"></label>
+                <div class="col-sm-2">
+                    <input asp-for="Infrastructure" class="form-control" />
+                </div>
+
+                <label asp-for="Material" class="col-sm-1 col-form-label"></label>
+                <div class="col-sm-2">
+                    <input asp-for="Material" class="form-control" />
+                </div>
+
+                <label asp-for="SunIntensity" class="col-sm-1 col-form-label"></label>
+                <div class="col-sm-2">
+                    <input asp-for="SunIntensity" class="form-control" />
+                </div>
+                <label asp-for="IdLease" class="form-label"></label>
+                <div class="col-sm-2">
+                <select class="form-select" asp-for="IdLease" asp-items="ViewBag.Lease">
+                    <option selected value="">Choose a Lease</option>
+                </select>
+                </div>
+                <div class="form-text"><span asp-validation-for="IdSoil" class="text-danger"></span></div>
+                <label asp-for="IdSoil" class="form-label"></label>
+                <div class="col-sm-2">
+                <select class="form-select" asp-for="IdSoil" asp-items="ViewBag.Soil">
+                    <option selected value="">Choose a Soil</option>
+                </select>
+                </div>
+                <div class="form-text"><span asp-validation-for="IdSoil" class="col-sm-2"></span></div>
+
+            </div>
+         </div>
+
+         <div class="col-sm-10">
+             <partial name ="Plants" model="Model.Plants"/>
+         </div>
+
+    </form>
+</div>
+
+@section styles{
+  <link rel="stylesheet" href="~/lib/jqueryui/themes/base/jquery-ui.css" />
+}
+@section scripts {
+    <partial name="IncludeValidation" />
+    <script src="~/js/plot.js" asp-append-version="true"></script>
+}

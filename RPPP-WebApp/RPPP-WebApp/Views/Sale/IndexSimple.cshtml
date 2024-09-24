@@ -1,0 +1,41 @@
+﻿@using RPPP_WebApp.Models;
+@model IEnumerable<Sale>
+@{
+    ViewData["Title"] = "Sale list";
+}
+
+<h2>Sale list</h2>
+<a asp-action="Create">Add new sale</a>
+
+<table class="table table-sm table-striped table-hover" id="table-sale">
+    <thead>
+        <tr>
+            <th>Id Sale</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var sale in Model)
+        {
+            <tr>
+                <td class="text-center">@sale.IdSale</td>
+                <td class="text-left">@sale.PlantSeedling</td>
+                <td class="text-center">@sale.QuantitySale</td>
+                <td class="text-left">@sale.PriceSale</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section styles{
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css" />
+}
+
+@section scripts{
+    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#table-sale').DataTable();
+        });
+    </script>
+}

@@ -1,0 +1,65 @@
+﻿
+<ul class="navbar-nav">
+  <li class="nav-item">
+    <a class="nav-link"
+        asp-action="Index" asp-controller="Home">
+      Home
+    </a>
+  </li>
+    
+  <li class="nav-item">
+    <a class="nav-link 
+  @(ViewBag.Controller == "Plots" ? "active": "")"
+        asp-action="Index" asp-controller="Plot">
+      Plots
+    </a>
+  </li>
+  
+  <li class="nav-item">
+    <a class="nav-link 
+  @(ViewBag.Controller == "Harvest" ? "active": "")"
+       asp-action="Index" asp-controller="Harvest">
+        Harvest
+    </a>
+  </li>
+  
+ <li class="nav-item">
+    <a class="nav-link 
+  @(ViewBag.Controller == "Soil" ? "active": "")"
+       asp-action="Index" asp-controller="Soil">
+      Products
+    </a>
+  </li>
+  
+  <li class="nav-item">
+    <a class="nav-link 
+  @(ViewBag.Controller == "Plants" ? "active": "")"
+       asp-action="Index" asp-controller="Plants">
+      Partners
+    </a>
+  </li>
+ 
+  <li class="nav-item">
+    <a class="nav-link 
+  @(ViewBag.Controller == "KnownCustomer" ? "active": "")"
+       asp-action="Index" asp-controller="KnownCustomer">
+      KnownCustomer
+    </a>
+  </li>
+ 
+  <li class="nav-item">
+    <a class="nav-link 
+  @(ViewBag.Controller == "Harvest" ? "active": "")"
+       asp-action="Index" asp-controller="Harvest">
+      Reports
+    </a>
+  </li>
+  
+  <li class="nav-item">
+    <a class="nav-link 
+  @(ViewBag.Controller == "Request" ? "active": "")"
+        asp-action="Index" asp-controller="Request ">
+      Log viewer
+    </a>
+  </li>    
+</ul>

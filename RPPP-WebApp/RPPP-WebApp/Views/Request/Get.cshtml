@@ -1,0 +1,27 @@
+﻿@using RPPP_WebApp.Controllers
+@model RPPP_WebApp.ViewModels.RequestViewModel
+
+
+<tr hx-target="this" hx-swap="outerHTML">
+    <td class="text-left">@Model.IdRequest</td>
+    <td class="text-left">@Model.SpeciesAsked</td>
+    <td class="text-left">@Model.DateRequest.ToString("dd.MM.yyyy")</td>
+    <td class="text-left">@Model.QuantityAsked</td>
+    <td class="text-left">@Model.PriceAsked</td>
+    <td class="text-left">@Model.IdPerson</td>
+    <td class="text-left">@Model.StatusRequest</td>
+
+    <td>
+        <a class="btn btn-sm"
+           hx-get="@Url.Action(nameof(RequestController.Edit), new { id = Model.IdRequest })"
+           title="Edit"><i class="fas fa-edit"></i></a>
+    </td>
+    <td>
+        <button class="btn btn-sm btn-danger"
+                hx-confirm="Delete request?"
+                hx-delete="@Url.Action(nameof(RequestController.Delete), new { id = Model.IdRequest })"
+                title="Delete">
+            <i class="fas fa-trash-alt"></i>
+        </button>
+    </td>
+</tr>

@@ -1,0 +1,50 @@
+﻿@using RPPP_WebApp.ViewModels;
+@model IEnumerable<HarvestViewModel>
+<table class="table table-striped" id="table-items">
+    <thead>
+        <tr>
+            @{
+                string[] headers = { "IdHarvest", "StartHarvest", "EndHarvest", "UseHarvest", "QuantityHarvest", "CostHarvest", "NameHarvest"};
+                for (int i = 0; i < headers.Length; i++)
+                {
+                    <th class="text-center col-sm-auto">
+                        @headers[i]
+                    </th>
+                }
+            }
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var harvest in Model)
+        {
+
+            <tr>
+                <td class="text-left col-sm-auto">
+                    @harvest.IdHarvest
+                </td>
+                <td class="text-center col-sm-auto">
+                    <input name="Workers[@harvest.StartHarvest].SDate" class="form-control" value="@harvest.StartHarvest" />
+                </td>
+                <td class="text-center col-sm-auto">
+                    <input name="Workers[@harvest.EndHarvest].EDate" class="form-control" value="@harvest.EndHarvest" />
+                </td>
+                <td class="text-left col-sm-auto">
+                    @harvest.UseHarvest
+                </td>
+                <td class="text-left col-sm-auto">
+                    @harvest.QuantityHarvest
+                </td>
+                <td class="text-center col-sm-auto">
+                    <input name="Workers[@harvest.CostHarvest].Cost" class="form-control" value="@harvest.CostHarvest" />
+                </td>
+                <td class="text-center col-sm-auto">
+                    <input name="Workers[@harvest.NameHarvest].Name" class="form-control" value="@harvest.NameHarvest" />
+                </td>
+                <td>
+                    <button class="btn btn-sm btn-danger deleterow" title="Remove"><i class="fa fa-minus"></i></button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

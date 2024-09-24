@@ -1,0 +1,62 @@
+﻿@using RPPP_WebApp.Models;
+@model KnownCustomer
+@{
+    ViewBag.title = "Add Known Customer";
+}
+
+
+    
+<h2>Add new Known Customer</h2>
+
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="All"></div>
+    <div class="mb-3">
+        <label asp-for="IdPersonNavigation.IdPerson" class="form-label"></label>
+        <input asp-for="IdPersonNavigation.IdPerson" class="form-control" />
+        <div class="form-text"><span asp-validation-for="IdPersonNavigation.IdPerson" class="text-danger"></span></div>
+    </div>
+    <div class="mb-3">
+        <label asp-for="IdPersonNavigation.FirstName " class="form-label"></label>
+        <input asp-for="IdPersonNavigation.FirstName " class="form-control" />
+        <div class="form-text"><span asp-validation-for="IdPersonNavigation.FirstName" class="text-danger"></span></div>
+     
+    </div>
+    <div class="mb-3">
+        <label asp-for="IdPersonNavigation.LastName" class="form-label"></label>
+        <input  asp-for="IdPersonNavigation.LastName" class="form-control" />
+        <div class="form-text"><span asp-validation-for="IdPersonNavigation.LastName" class="text-danger"></span></div>
+        
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="IdPersonNavigation.Number" class="form-label"></label>
+        <input asp-for="IdPersonNavigation.Number" class="form-control" />
+        <div class="form-text"><span asp-validation-for="IdPersonNavigation.Number" class="text-danger"></span></div>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="IdPersonNavigation.Mail" class="form-label"></label>
+        <input asp-for="IdPersonNavigation.Mail" class="form-control" />
+        <div class="form-text"><span asp-validation-for="IdPersonNavigation.Mail" class="text-danger"></span></div>
+
+    </div>
+    <div class="mb-3">
+        <label asp-for="IdPersonNavigation.Address" class="form-label"></label>
+        <input asp-for="IdPersonNavigation.Address" class="form-control" />
+        <div class="form-text"><span asp-validation-for="IdPersonNavigation.Address" class="text-danger"></span></div>
+
+    </div>
+   
+  
+
+    <div class="text-center">
+        <button class="btn btn-primary" type="submit">Add</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </div>
+    <div asp-validation-summary="All"></div>
+</form>
+
+
+@section scripts {
+    <partial name="IncludeValidation" />
+}

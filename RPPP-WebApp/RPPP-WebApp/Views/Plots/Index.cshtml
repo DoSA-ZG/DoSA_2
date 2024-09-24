@@ -1,0 +1,112 @@
+﻿@model RPPP_WebApp.ViewModels.PlotViewModel
+@{
+    ViewBag.Title = "Plot";
+}
+
+<h2>Plots list</h2>
+
+<a asp-action="Create">Add new Plot</a>
+
+<pager page-info="@Model.PagingInfo" page-action="Index" page-title="Enter page"
+       class="float-end">
+</pager>
+
+<table class="table table-sm table-striped table-hover">
+    <thead>
+        <tr>
+            <th>
+                <a asp-route-sort="1" asp-route-page="@Model.PagingInfo.CurrentPage" asp-route-ascending="@(Model.PagingInfo.Sort == 1 ? !Model.PagingInfo.Ascending : true)">
+                    Plot Id
+                </a>
+            </th>
+            <th>
+                <a asp-route-sort="2" asp-route-page="@Model.PagingInfo.CurrentPage" asp-route-ascending="@(Model.PagingInfo.Sort == 2 ? !Model.PagingInfo.Ascending : true)">
+                    Plot Name
+                </a>
+            </th>
+            <th>
+                Plant Species
+            </th>
+            <th>
+                    Lease Number
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var plot in Model.Plots)
+        {
+            <tr>
+                <td class="text-left">@plot.IdPlot</td>
+                <td class="text-left">@plot.PlotName</td>
+                <td class="text-left">
+                    @if (@plot.Plants.Any())
+                    {
+                        <text>@string.Join(",",plot.Plants.Select(plant => plant.Species))</text>
+                    }
+                    else
+                    {
+                        <text>No plants</text>
+                    }
+                </td>
+                <td class="text-left">@if (@plot.IdLease != null)
+                    {
+                        @plot.IdLease
+                    }
+                    else
+                    {
+                        <text>No lease</text>
+                    }
+                </td>
+
+                <td class="btn-group">
+                    <a asp-action="Details"
+                       asp-route-id="@plot.IdPlot"
+                       asp-route-page="@Model.PagingInfo.CurrentPage"
+                       asp-route-sort="@Model.PagingInfo.Sort"
+                       asp-route-ascending="@Model.PagingInfo.Ascending"
+                       class="btn btn-sm btn-primary" title="Details">
+                        Details<i class="fas fa-pencil-square-o"></i>
+                    </a>
+                    <a asp-action="Edit"
+                       asp-route-id="@plot.IdPlot"
+                       asp-route-page="@Model.PagingInfo.CurrentPage"
+                       asp-route-sort="@Model.PagingInfo.Sort"
+                       asp-route-ascending="@Model.PagingInfo.Ascending"
+                       class="btn btn-sm btn-warning" title="Edit">
+                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <form asp-action="Delete" method="post"
+                          asp-route-page="@Model.PagingInfo.CurrentPage"
+                          asp-route-sort="@Model.PagingInfo.Sort"
+                          asp-route-ascending="@Model.PagingInfo.Ascending">
+                        <input type="hidden" name="IdPlot" value="@plot.IdPlot" />
+                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+                        <button type="submit" class="btn btn-sm btn-danger delete" title="Delete">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div>
+    <a href="@Url.Action("GetStarted", "Home")">Back</a>
+</div>
+
+@section styles{
+    <link rel="stylesheet" href="~/lib/jqueryui/themes/base/jquery-ui.css" />
+}
+@section scripts {
+    <script>
+        document.body.addEventListener("showMessage", function (evt) {
+            toastr[evt.detail.messageType](evt.detail.message);
+        })
+        document.body.addEventListener("htmx:responseError",
+            function (evt) {
+                toastr["error"](evt.detail.error);
+            })
+    </script>
+}

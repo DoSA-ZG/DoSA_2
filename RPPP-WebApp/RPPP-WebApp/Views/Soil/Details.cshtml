@@ -1,0 +1,97 @@
+﻿@using RPPP_WebApp.Models;
+@model RPPP_WebApp.ViewModels.SoilViewModel
+@{
+    ViewBag.Title = "Soil Details";
+}
+<h2>Soil Details</h2>
+
+
+
+<table class="table table-sm table-striped table-hover">
+    <thead>
+        <tr>
+            <th>
+                <a>
+                    Soil Id
+                </a>
+            </th>
+            <th>
+                <a>
+                    Soil Name
+                </a>
+            </th>
+            <th></th>
+        </tr>
+
+    </thead>
+    <tbody>
+        <tr>
+            <td class="text-center">@Model.IdSoil</td>
+            <td class="text-center">@Model.SoilName</td>
+        </tr>
+
+    </tbody>
+</table>
+<hr>
+<h2>Plot</h2>
+<table class="table table-sm table-striped table-hover">
+
+    <thead>
+        <tr>
+            <th>
+                <a>
+                    Plot Id
+                </a>
+            </th>
+            <th>
+                <a>
+                    Plot Name
+                </a>
+            </th>
+            <th>
+                <a>
+                    Plot GPS
+                </a>
+            </th>
+            <th>
+                <a>
+                    Infrastructure
+                </a>
+            </th>
+            <th>
+                <a>
+                    Material
+                </a>
+            </th>
+            <th>
+                <a>
+                    Sun Intensity
+                </a>
+            </th>
+            <th>
+                <a>
+                    Id Lease
+                </a>
+            </th>
+            <th></th>
+        </tr>
+
+    </thead>
+    <tbody>
+        <tr>
+             @foreach(var plot in Model.Plots)
+             {
+                <tr>
+                    <td class="text-center">@plot.IdPlot</td>
+                    <td class="text-center">@plot.PlotName</td>
+                    <td class="text-center">@plot.PlotGps</td>
+                    <td class="text-center">@plot.Infrastructure</td>
+                    <td class="text-center">@plot.Material</td>
+                    <td class="text-center">@plot.SunIntensity</td>
+                    <td class="text-center">@plot.IdLease</td>
+                </tr>
+             }
+        </tr>
+
+    </tbody>
+</table>
